@@ -1,3 +1,5 @@
+import type {CsFormElement} from "../contentstack";
+
 export type RuleKey = "min_max" | "required"
 
 export interface Rule {
@@ -10,7 +12,7 @@ export interface MinMaxRule extends Rule {
     min: number,
 }
 
-export function minMaxValidation(label: string, value: string, rule: MinMaxRule) {
+export function minMax(label: string, value: string, rule: MinMaxRule): [boolean, string] {
     if (rule.min > rule.max) throw Error("Min cannot be greater then max! Check your contentstack!");
 
     let msg = ""
@@ -26,7 +28,7 @@ export function minMaxValidation(label: string, value: string, rule: MinMaxRule)
     return [true, msg];
 }
 
-export function required(label: string, value: any, rule: Rule) {
+export function required(label: string, value: any, rule: Rule): [boolean, string] {
     let msg = ""
 
     const type = typeof value;
@@ -34,12 +36,42 @@ export function required(label: string, value: any, rule: Rule) {
     if (type == "number" && value === null || value === undefined) {
         msg = rule.message_template.replace("{{FIELD_NAME}}", label)
         return [false, msg];
-    } else {
+    } else if (type === "string") {
+        value = value.trim();
         if (!value) {
             msg = rule.message_template.replace("{{FIELD_NAME}}", label)
             return [false, msg];
         }
+    } else if (!value) {
+        msg = rule.message_template.replace("{{FIELD_NAME}}", label)
+        return [false, msg];
+
     }
 
     return [true, msg];
+}
+
+export default function validate(field: CsFormElement, value: any) {
+    if (!field.rules) return [];
+
+    const messages: string[] = [];
+    for (const rule of field.rules) {
+        let validationMethod: any;
+        switch (rule.key) {
+            case "min_max":
+                validationMethod = minMax;
+                break;
+            case "required":
+                validationMethod = required;
+                break;
+        }
+
+        if (!validationMethod) throw new Error(`Unrecognized rule key: '${rule.key}'`)
+
+        const [isValid, error] = validationMethod(field.label, value, rule);
+        if (!isValid) messages.push(error)
+
+    }
+
+    return messages
 }

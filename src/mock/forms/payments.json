@@ -11,14 +11,10 @@
       "label": "Your name:",
       "rules": [
         {
-          "key": "required",
-          "message_template": "{{FIELD_NAME}} is required"
-        },
-        {
           "key": "min_max",
           "max": 250,
           "min": 10,
-          "message_template": "{{FIELD_NAME}} need to be at least {{MIN}} and at most {{MAX}} characters long"
+          "message_template": "Needs to be at least {{MIN}} and at most {{MAX}} characters long"
         }
       ]
     },
@@ -39,6 +35,12 @@
         "Kot",
         "Jesiotr",
         "Kuna"
+      ],
+      "rules": [
+        {
+          "key": "required",
+          "message_template": "{{FIELD_NAME}} is required"
+        }
       ]
     }
   ]

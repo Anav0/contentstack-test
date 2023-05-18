@@ -34,10 +34,10 @@
     .cs-form {
         border: 2px #bebebebe solid;
         padding: 1rem;
-        min-height: 200px;
+        min-height: 400px;
         max-width: 250px;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: space-around;
     }
 </style>
