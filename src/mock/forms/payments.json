@@ -1,0 +1,51 @@
+{
+  "id": "XYZ",
+  "metadata": {},
+  "elements": [
+    {
+      "id": "Field_A",
+      "field_type": "string",
+      "field_category": "CsDropdown",
+      "label": "Your name:",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "validation": [
+        {
+          "name": "Max length",
+          "key": "min_max_length",
+          "max": 250,
+          "min": 10,
+          "message_template": "{{FIELD_NAME}} need to be at least {{MIN}} and at most {{MAX}} characters long"
+        }
+      ]
+    },
+    {
+      "id": "Field_b",
+      "field_type": "string",
+      "field_category": "CsDropdown",
+      "label": "Your name:",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "labels": [
+        "Pies",
+        "Kot",
+        "Jesiotr",
+        "Kuna"
+      ]
+    }
+  ]
+}
