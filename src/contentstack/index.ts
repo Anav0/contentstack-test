@@ -1,3 +1,5 @@
+import type {Rule} from "../validation";
+
 export interface Metadata {
     created: Date,
     modified: Date,
@@ -21,14 +23,16 @@ export interface CsForm {
 
 export interface CsFormElement {
     id: string,
+    label: string;
     field_type: FieldType,
     field_id: string,
     field_category: FieldCategory,
     formatting: FormattingOption,
+
+    rules?: Rule[]
 }
 
 export interface CsField extends CsFormElement {
-    label: string;
 }
 
 export interface CsDropdown extends CsFormElement {

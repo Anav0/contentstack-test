@@ -7,8 +7,11 @@
 
 </script>
 
-<select bind:value={value}>
-    {#each element.labels as label, i}
-        <option value={element.values[i]}>{label}</option>
-    {/each}
-</select>
+<div>
+    <label>{element.label}</label>
+    <select bind:value={value}>
+        {#each element.labels as label, i}
+            <option value={element.values[i]}>{label}</option>
+        {/each}
+    </select>
+</div>

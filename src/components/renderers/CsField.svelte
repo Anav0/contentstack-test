@@ -7,4 +7,9 @@
 
 </script>
 
-<input bind:value={value} placeholder="{element.label}">
+<div>
+    <label>
+        {element.label}
+    </label>
+    <input bind:value={value} placeholder="{element.label}">
+</div>
