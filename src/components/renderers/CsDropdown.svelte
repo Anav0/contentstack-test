@@ -3,10 +3,12 @@
 
     export let element: CsDropdown;
 
+    export let value = ""
+
 </script>
 
-<select>
+<select bind:value={value}>
     {#each element.labels as label, i}
-        <option value="{element.values[i]}">{label}</option>
+        <option value={element.values[i]}>{label}</option>
     {/each}
 </select>

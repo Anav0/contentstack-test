@@ -1,4 +1,8 @@
 export interface Metadata {
+    created: Date,
+    modified: Date,
+    created_by: string,
+    modified_by: string,
 }
 
 export type CsFormKeys = "payments_form" | "user_management_form"
@@ -10,6 +14,7 @@ export type FilteringOption = "equals" | "auto";
 
 export interface CsForm {
     id: string,
+    title: string,
     metadata: Metadata,
     elements: CsFormElement[]
 }
@@ -17,6 +22,7 @@ export interface CsForm {
 export interface CsFormElement {
     id: string,
     field_type: FieldType,
+    field_id: string,
     field_category: FieldCategory,
     formatting: FormattingOption,
 }

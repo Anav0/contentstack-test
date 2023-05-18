@@ -1,24 +1,14 @@
 {
   "id": "XYZ",
+  "title": "Payments form",
   "metadata": {},
   "elements": [
     {
       "id": "Field_A",
       "field_type": "string",
-      "field_category": "CsDropdown",
+      "field_id": "Name",
+      "field_category": "CsField",
       "label": "Your name:",
-      "values": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
-      "labels": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
       "validation": [
         {
           "name": "Max length",
@@ -32,6 +22,7 @@
     {
       "id": "Field_b",
       "field_type": "string",
+      "field_id": "Pet",
       "field_category": "CsDropdown",
       "label": "Your name:",
       "values": [
