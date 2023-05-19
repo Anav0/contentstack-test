@@ -3,6 +3,20 @@
     import type {PaymentsForm} from "../contentstack";
     import CsDropdown from "../components/renderers/CsDropdown.svelte";
     import CsField from "../components/renderers/CsField.svelte";
+    import {
+        Form,
+        FormGroup,
+        Header,
+        HeaderNav,
+        HeaderNavItem,
+        HeaderNavMenu,
+        SkipToContent,
+        Content,
+        Grid,
+        Button,
+        Row,
+        Column,
+    } from "carbon-components-svelte";
 
     let form = paymentsForm as PaymentsForm;
 
@@ -14,30 +28,45 @@
 
 </script>
 
-<h2>{form.title}</h2>
-<form class="cs-form">
-    {#each form.elements as element, i}
-        {#if element.field_category === "CsDropdown"}
-            <CsDropdown bind:value={form_model[element.field_id]} element="{element}"/>
-        {/if}
-        {#if element.field_category === "CsField"}
-            <CsField bind:value={form_model[element.field_id]} element="{element}"/>
-        {/if}
-    {/each}
+<div>
+    <Header platformName="Contentstack">
+        <svelte:fragment slot="skip-to-content">
+            <SkipToContent/>
+        </svelte:fragment>
+        <HeaderNav>
+            <HeaderNavItem href="/payments" text="Payments form"/>
+            <HeaderNavItem href="/bene" text="Beneficiary"/>
+        </HeaderNav>
+    </Header>
 
-    <button on:click={submit}>
-        Submit
-    </button>
-</form>
+    <Content>
+        <Grid>
+            <Row>
+                <Column/>
+                <Column md={4}>
+                    <Form class="cs-form" on:submit={submit}>
+                        <FormGroup>
+                            {#each form.elements as element, i}
+                                {#if element.field_category === "CsDropdown"}
+                                    <CsDropdown bind:value={form_model[element.field_id]} element="{element}"/>
+                                {/if}
+                                {#if element.field_category === "CsField"}
+                                    <CsField bind:value={form_model[element.field_id]} element="{element}"/>
+                                {/if}
+                            {/each}
+                        </FormGroup>
+                        <Button on:click={submit}>
+                            Submit
+                        </Button>
+                    </Form>
+                </Column>
+                <Column/>
+            </Row>
+        </Grid>
+    </Content>
+</div>
 
 <style>
     .cs-form {
-        border: 2px #bebebebe solid;
-        padding: 1rem;
-        min-height: 400px;
-        max-width: 250px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
     }
 </style>

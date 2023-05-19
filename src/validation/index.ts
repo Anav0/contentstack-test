@@ -1,4 +1,5 @@
 import type {CsFormElement} from "../contentstack";
+import "carbon-components-svelte/css/white.css";
 
 export type RuleKey = "min_max" | "required"
 
