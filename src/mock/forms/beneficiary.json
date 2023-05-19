@@ -1,0 +1,37 @@
+{
+  "id": "BBB",
+  "title": "Beneficiary form",
+  "metadata": {},
+  "elements": [
+    {
+      "id": "awjdnkjq2n3kj2nkjandkjwandkawndk",
+      "field_type": "string",
+      "field_id": "Name",
+      "field_category": "CsField",
+      "label": "Template name:",
+      "rules": [
+        {
+          "key": "min_max",
+          "max": 100,
+          "min": 10,
+          "message_template": "Needs to be at least {{MIN}} and at most {{MAX}} characters long"
+        }
+      ]
+    },
+    {
+      "id": "NFJ45NFUAWNADJ",
+      "field_type": "number",
+      "field_id": "max_transactions_per_month",
+      "field_category": "CsField",
+      "label": "Limit of transactions per month:",
+      "rules": [
+        {
+          "key": "min_max",
+          "max": 25,
+          "min": 0,
+          "message_template": "Needs to be at least {{MIN}} and at most {{MAX}}"
+        }
+      ]
+    }
+  ]
+}

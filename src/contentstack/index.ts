@@ -7,14 +7,14 @@ export interface Metadata {
     modified_by: string,
 }
 
-export type CsFormKeys = "payments_form" | "user_management_form"
+export type CsFormKeys = "payments_form" | "beneficiary_form"
 export type FieldType = "string" | "number" | "bool";
 export type FieldCategory = "CsField" | "CsDropdown" | "CsApiDropdown";
 export type FormattingOption = "uppercase" | "lowercase" | "capitalize";
 export type SortingOption = "textCaseSensitive" | "auto";
 export type FilteringOption = "equals" | "auto";
 
-export interface CsForm {
+export interface CsFormModel {
     id: string,
     title: string,
     metadata: Metadata,
@@ -45,6 +45,5 @@ export interface CsApiDropdown extends CsFormElement {
     endpoint: string;
 }
 
-export interface PaymentsForm extends CsForm {
-
-}
+export interface PaymentsForm extends CsFormModel {}
+export interface BeneficiaryForm extends CsFormModel {}
