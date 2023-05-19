@@ -5,10 +5,12 @@
     } from "carbon-components-svelte";
 
     import type {CsField} from "../../contentstack";
-    import validate from "../../validation";
+    import validate from "../../rules";
+    import {createEventDispatcher} from "svelte";
+
+    const dispatch = createEventDispatcher();
 
     export let element: CsField;
-
     export let value = null
 
     let errors = []
@@ -16,8 +18,9 @@
     function performValidation(e) {
         if (!e.target) return;
 
-        errors = validate(element, !e.target.value ?? value)
-        console.log(errors, e.target.value)
+        errors = validate(element, e.target.value)
+
+        dispatch('validation', { errors });
     }
 </script>
 

@@ -1,4 +1,4 @@
-import type {Rule} from "../validation";
+import type {Rule} from "../rules";
 
 export interface Metadata {
     created: Date,
