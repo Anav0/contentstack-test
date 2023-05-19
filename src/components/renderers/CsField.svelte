@@ -1,36 +1,60 @@
 <script lang="ts">
     import {
         TextInput,
-        NumberInput
+        NumberInput, Checkbox
     } from "carbon-components-svelte";
 
     import type {CsField} from "../../contentstack";
     import validate from "../../validation";
-    import Errors from "../Errors.svelte";
 
     export let element: CsField;
 
-    export let value = ""
+    export let value = null
 
     let errors = []
 
     function performValidation(e) {
         if (!e.target) return;
-        errors = validate(element, e.target.value)
-    }
 
+        errors = validate(element, !e.target.value ?? value)
+        console.log(errors, e.target.value)
+    }
 </script>
 
 <div>
-    <TextInput
-            on:blur={(e) => performValidation(e)}
-            on:paste={(e) => performValidation(e)}
-            on:keydown={(e) => performValidation(e)}
-            name="{element.field_id}"
-            bind:value={value}
-            invalid="{errors.length}"
-            invalidText="{errors.join(', ')}"
-            placeholder="{element.label}"/>
+    {#if element.field_type === "string"}
+        <TextInput
+                on:blur={(e) => performValidation(e)}
+                on:paste={(e) => performValidation(e)}
+                on:keydown={(e) => performValidation(e)}
+                name="{element.field_id}"
+                bind:value={value}
+                invalid="{errors.length}"
+                invalidText="{errors.join(', ')}"
+                placeholder="{element.label}"/>
 
+    {:else if element.field_type === "number"}
+        <NumberInput
+                on:blur={(e) => performValidation(e)}
+                on:paste={(e) => performValidation(e)}
+                on:keydown={(e) => performValidation(e)}
+                name="{element.field_id}"
+                bind:value={value}
+                invalid="{errors.length}"
+                invalidText="{errors.join(', ')}"
+                placeholder="{element.label}"/>
+
+    {:else if element.field_type === "bool"}
+        <Checkbox
+                on:blur={(e) => performValidation(e)}
+                on:paste={(e) => performValidation(e)}
+                on:keydown={(e) => performValidation(e)}
+                name="{element.field_id}"
+                bind:checked={value}
+                invalid="{errors.length}"
+                invalidText="{errors.join(', ')}"
+                labelText="{element.label}"
+        />
+    {/if}
 
 </div>

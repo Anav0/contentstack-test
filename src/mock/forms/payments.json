@@ -4,6 +4,19 @@
   "metadata": {},
   "elements": [
     {
+      "id": "JDNGYGHTN6J34HN",
+      "field_type": "bool",
+      "field_id": "is_hungry",
+      "field_category": "CsField",
+      "label": "Are you hungry?",
+      "rules": [
+        {
+          "key": "required",
+          "message_template": "Is required"
+        }
+      ]
+    },
+    {
       "id": "Field_A",
       "field_type": "string",
       "field_id": "Name",

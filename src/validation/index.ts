@@ -13,17 +13,35 @@ export interface MinMaxRule extends Rule {
     min: number,
 }
 
-export function minMax(label: string, value: string, rule: MinMaxRule): [boolean, string] {
+export function minMax(label: string, value: any, rule: MinMaxRule): [boolean, string] {
     if (rule.min > rule.max) throw Error("Min cannot be greater then max! Check your contentstack!");
 
-    let msg = ""
-    if (value.length < rule.min || value.length > rule.max) {
-        msg = rule.message_template
-            .replace("{{FIELD_NAME}}", label)
-            .replace("{{MAX}}", rule.max + "")
-            .replace("{{MIN}}", rule.min + "");
+    const value_type = typeof value;
 
-        return [false, msg];
+    let msg = ""
+
+    switch (value_type) {
+        case "bigint":
+        case "number":
+            if (value < rule.min || value.length > rule.max) {
+                msg = rule.message_template
+                    .replace("{{FIELD_NAME}}", label)
+                    .replace("{{MAX}}", rule.max + "")
+                    .replace("{{MIN}}", rule.min + "");
+
+                return [false, msg];
+            }
+            break;
+        case "string":
+            if (value.length < rule.min || value.length > rule.max) {
+                msg = rule.message_template
+                    .replace("{{FIELD_NAME}}", label)
+                    .replace("{{MAX}}", rule.max + "")
+                    .replace("{{MIN}}", rule.min + "");
+
+                return [false, msg];
+            }
+            break;
     }
 
     return [true, msg];
@@ -34,7 +52,7 @@ export function required(label: string, value: any, rule: Rule): [boolean, strin
 
     const type = typeof value;
 
-    if (type == "number" && value === null || value === undefined) {
+    if ((type == "number" || type == "boolean") && value === null || value === undefined) {
         msg = rule.message_template.replace("{{FIELD_NAME}}", label)
         return [false, msg];
     } else if (type === "string") {
@@ -46,7 +64,6 @@ export function required(label: string, value: any, rule: Rule): [boolean, strin
     } else if (!value) {
         msg = rule.message_template.replace("{{FIELD_NAME}}", label)
         return [false, msg];
-
     }
 
     return [true, msg];
