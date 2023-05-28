@@ -3,6 +3,7 @@
   import type { CsApiDropdownModel } from "../../contentstack";
   import validate from "../../rules";
   import { createEventDispatcher, onMount } from "svelte";
+  import { getFormattingFn } from "../../formatting";
 
   const dispatch = createEventDispatcher();
 
@@ -29,7 +30,10 @@
       const res = await fetch(element.endpoint);
       const json = await res.json();
 
-      labels = json.map((obj: any) => (element?.model_label_path ? obj[element?.model_label_path] : obj));
+      labels = json
+        .map((obj: any) => (element?.model_label_path ? obj[element?.model_label_path] : obj))
+        .map((label: string) => (element.formatting_option ? getFormattingFn(element.formatting_option)?.(label) : label));
+        
       values = json.map((obj: any) => (element?.model_value_path ? obj[element?.model_value_path] : obj));
     } catch (err) {
       console.error(err);

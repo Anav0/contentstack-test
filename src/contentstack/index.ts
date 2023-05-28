@@ -10,7 +10,7 @@ export interface Metadata {
 export type CsFormKeys = "payments_form" | "beneficiary_form"
 export type FieldType = "string" | "number" | "bool";
 export type FieldCategory = "CsField" | "CsDropdown" | "CsApiDropdown";
-export type FormattingOption = "uppercase" | "lowercase" | "capitalize";
+export type FormattingOption = "uppercase" | "lowercase" | "capitalize" | "turncateFirstName";
 export type SortingOption = "textCaseSensitive" | "auto";
 export type FilteringOption = "equals" | "auto";
 
@@ -45,6 +45,7 @@ export interface CsApiDropdownModel extends CsFormElement {
     endpoint: string,
     model_value_path?: string,
     model_label_path?: string,
+    formatting_option?: FormattingOption,
 }
 
 export interface CsApiDropdownModel extends CsFormElement {

@@ -24,6 +24,7 @@
       "endpoint": "https://jsonplaceholder.typicode.com/posts",
       "model_value_path": "id",
       "model_label_path": "title",
+      "formatting_option": "turncateFirstName",
       "label": "Bank id:",
       "rules": [
         {
