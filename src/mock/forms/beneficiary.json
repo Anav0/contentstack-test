@@ -18,6 +18,21 @@
       ]
     },
     {
+      "field_type": "string",
+      "field_id": "BankId",
+      "field_category": "CsApiDropdown",
+      "endpoint": "https://jsonplaceholder.typicode.com/posts",
+      "model_value_path": "id",
+      "model_label_path": "title",
+      "label": "Bank id:",
+      "rules": [
+        {
+          "key": "required",
+          "message_template": "Is required"
+        }
+      ]
+    },
+    {
       "field_type": "number",
       "field_id": "max_transactions_per_month",
       "field_category": "CsField",

@@ -42,6 +42,12 @@ export interface CsDropdownModel extends CsFormElement {
 }
 
 export interface CsApiDropdownModel extends CsFormElement {
+    endpoint: string,
+    model_value_path?: string,
+    model_label_path?: string,
+}
+
+export interface CsApiDropdownModel extends CsFormElement {
     endpoint: string;
 }
 
