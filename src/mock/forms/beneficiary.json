@@ -4,7 +4,6 @@
   "metadata": {},
   "elements": [
     {
-      "id": "awjdnkjq2n3kj2nkjandkjwandkawndk",
       "field_type": "string",
       "field_id": "Name",
       "field_category": "CsField",
@@ -19,7 +18,6 @@
       ]
     },
     {
-      "id": "NFJ45NFUAWNADJ",
       "field_type": "number",
       "field_id": "max_transactions_per_month",
       "field_category": "CsField",

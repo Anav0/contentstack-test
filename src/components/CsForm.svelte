@@ -6,8 +6,8 @@
 
     export let content: CsFormModel | null;
 
-    let form_model = {}
-    let form_errors = {}
+    let form_model: any = {}
+    let form_errors: any = {}
 
     function submit() {
         console.log("ERRORS", form_errors)
@@ -20,7 +20,7 @@
 
     $: haveAnyErrors = haveErr(form_errors);
 
-    function haveErr(form_errors) {
+    function haveErr(form_errors: any) {
         for (const id of Object.keys(form_errors)) {
             if (form_errors[id].length) return true;
         }

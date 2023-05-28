@@ -32,16 +32,16 @@ export interface CsFormElement {
     rules?: Rule[]
 }
 
-export interface CsField extends CsFormElement {
+export interface CsFieldModel extends CsFormElement {
 }
 
-export interface CsDropdown extends CsFormElement {
+export interface CsDropdownModel extends CsFormElement {
     values: string[],
     labels: string[],
     default_value: number,
 }
 
-export interface CsApiDropdown extends CsFormElement {
+export interface CsApiDropdownModel extends CsFormElement {
     endpoint: string;
 }
 

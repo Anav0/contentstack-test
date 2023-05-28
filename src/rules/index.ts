@@ -14,6 +14,7 @@ export interface MinMaxRule extends Rule {
 }
 
 export function minMax(label: string, value: any, rule: MinMaxRule): [boolean, string] {
+    
     if (rule.min > rule.max) throw Error("Min cannot be greater then max! Check your contentstack!");
 
     const value_type = typeof value;
